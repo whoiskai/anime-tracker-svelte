@@ -1,30 +1,18 @@
 <script>
-	export let name;
+	import { Router, Route } from "svelte-routing";
+	import NavLink from "./components/NavLink.svelte";
+	import About from "./routes/About.svelte"
+	import Home from "./routes/Home.svelte"
+	export let url = "";
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
-
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
+<Router url="{url}">
+	<nav>
+		<NavLink to="/">Home</NavLink>
+		<NavLink to="about">About</NavLink>
+	</nav>
+	<div>
+		<Route path="about" component="{About}" />
+		<Route path="/" component="{Home}" />
+	</div>
+</Router>
