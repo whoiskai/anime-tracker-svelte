@@ -161,6 +161,9 @@
         e.initCustomEvent(type, false, false, detail);
         return e;
     }
+    function query_selector_all(selector, parent = document.body) {
+        return Array.from(parent.querySelectorAll(selector));
+    }
 
     let current_component;
     function set_current_component(component) {
@@ -1821,10 +1824,10 @@
 
     	// The object returned here is spread on the anchor element's attributes
     	if (isActive) {
-    		return { class: "active" };
+    		return { class: "nav-link active" };
     	}
 
-    	return {};
+    	return { class: "nav-link" };
     }
 
     function instance$3($$self, $$props, $$invalidate) {
@@ -1941,7 +1944,7 @@
     	};
     }
 
-    // (12:2) <NavLink to="about">
+    // (44:5) <Link to="about">
     function create_default_slot_1(ctx) {
     	let t;
 
@@ -1961,24 +1964,35 @@
     	};
     }
 
-    // (9:0) <Router url="{url}">
+    // (32:0) <Router url="{url}">
     function create_default_slot$1(ctx) {
     	let nav;
+    	let a;
     	let t0;
     	let t1;
-    	let div;
+    	let button;
+    	let span;
     	let t2;
+    	let div0;
+    	let ul;
+    	let li0;
+    	let t3;
+    	let li1;
+    	let t4;
+    	let div1;
+    	let t5;
     	let current;
 
-    	const navlink0 = new NavLink({
+    	const link0 = new NavLink({
     			props: {
     				to: "/",
+    				class: "active",
     				$$slots: { default: [create_default_slot_2] },
     				$$scope: { ctx }
     			}
     		});
 
-    	const navlink1 = new NavLink({
+    	const link1 = new NavLink({
     			props: {
     				to: "about",
     				$$slots: { default: [create_default_slot_1] },
@@ -1995,79 +2009,153 @@
     	return {
     		c() {
     			nav = element("nav");
-    			create_component(navlink0.$$.fragment);
-    			t0 = space();
-    			create_component(navlink1.$$.fragment);
+    			a = element("a");
+    			t0 = text("Anime Tracker");
     			t1 = space();
-    			div = element("div");
-    			create_component(route0.$$.fragment);
+    			button = element("button");
+    			span = element("span");
     			t2 = space();
+    			div0 = element("div");
+    			ul = element("ul");
+    			li0 = element("li");
+    			create_component(link0.$$.fragment);
+    			t3 = space();
+    			li1 = element("li");
+    			create_component(link1.$$.fragment);
+    			t4 = space();
+    			div1 = element("div");
+    			create_component(route0.$$.fragment);
+    			t5 = space();
     			create_component(route1.$$.fragment);
+    			this.h();
     		},
     		l(nodes) {
-    			nav = claim_element(nodes, "NAV", {});
+    			nav = claim_element(nodes, "NAV", { class: true });
     			var nav_nodes = children(nav);
-    			claim_component(navlink0.$$.fragment, nav_nodes);
-    			t0 = claim_space(nav_nodes);
-    			claim_component(navlink1.$$.fragment, nav_nodes);
+    			a = claim_element(nav_nodes, "A", { class: true, href: true });
+    			var a_nodes = children(a);
+    			t0 = claim_text(a_nodes, "Anime Tracker");
+    			a_nodes.forEach(detach);
+    			t1 = claim_space(nav_nodes);
+
+    			button = claim_element(nav_nodes, "BUTTON", {
+    				class: true,
+    				type: true,
+    				"data-toggle": true,
+    				"data-target": true,
+    				"aria-controls": true,
+    				"aria-expanded": true,
+    				"aria-label": true
+    			});
+
+    			var button_nodes = children(button);
+    			span = claim_element(button_nodes, "SPAN", { class: true });
+    			children(span).forEach(detach);
+    			button_nodes.forEach(detach);
+    			t2 = claim_space(nav_nodes);
+    			div0 = claim_element(nav_nodes, "DIV", { class: true, id: true });
+    			var div0_nodes = children(div0);
+    			ul = claim_element(div0_nodes, "UL", { class: true });
+    			var ul_nodes = children(ul);
+    			li0 = claim_element(ul_nodes, "LI", { class: true });
+    			var li0_nodes = children(li0);
+    			claim_component(link0.$$.fragment, li0_nodes);
+    			li0_nodes.forEach(detach);
+    			t3 = claim_space(ul_nodes);
+    			li1 = claim_element(ul_nodes, "LI", { class: true });
+    			var li1_nodes = children(li1);
+    			claim_component(link1.$$.fragment, li1_nodes);
+    			li1_nodes.forEach(detach);
+    			ul_nodes.forEach(detach);
+    			div0_nodes.forEach(detach);
     			nav_nodes.forEach(detach);
-    			t1 = claim_space(nodes);
-    			div = claim_element(nodes, "DIV", {});
-    			var div_nodes = children(div);
-    			claim_component(route0.$$.fragment, div_nodes);
-    			t2 = claim_space(div_nodes);
-    			claim_component(route1.$$.fragment, div_nodes);
-    			div_nodes.forEach(detach);
+    			t4 = claim_space(nodes);
+    			div1 = claim_element(nodes, "DIV", { class: true });
+    			var div1_nodes = children(div1);
+    			claim_component(route0.$$.fragment, div1_nodes);
+    			t5 = claim_space(div1_nodes);
+    			claim_component(route1.$$.fragment, div1_nodes);
+    			div1_nodes.forEach(detach);
+    			this.h();
+    		},
+    		h() {
+    			attr(a, "class", "navbar-brand");
+    			attr(a, "href", "#");
+    			attr(span, "class", "navbar-toggler-icon");
+    			attr(button, "class", "navbar-toggler");
+    			attr(button, "type", "button");
+    			attr(button, "data-toggle", "collapse");
+    			attr(button, "data-target", ".navbar-collapse");
+    			attr(button, "aria-controls", ".navbar-collapse");
+    			attr(button, "aria-expanded", "false");
+    			attr(button, "aria-label", "Toggle navigation");
+    			attr(li0, "class", "nav-item");
+    			attr(li1, "class", "nav-item");
+    			attr(ul, "class", "navbar-nav");
+    			attr(div0, "class", "collapse navbar-collapse");
+    			attr(div0, "id", "navbarNav");
+    			attr(nav, "class", "navbar navbar-expand-lg navbar-dark bg-dark");
+    			attr(div1, "class", "container-fluid");
     		},
     		m(target, anchor) {
     			insert(target, nav, anchor);
-    			mount_component(navlink0, nav, null);
-    			append(nav, t0);
-    			mount_component(navlink1, nav, null);
-    			insert(target, t1, anchor);
-    			insert(target, div, anchor);
-    			mount_component(route0, div, null);
-    			append(div, t2);
-    			mount_component(route1, div, null);
+    			append(nav, a);
+    			append(a, t0);
+    			append(nav, t1);
+    			append(nav, button);
+    			append(button, span);
+    			append(nav, t2);
+    			append(nav, div0);
+    			append(div0, ul);
+    			append(ul, li0);
+    			mount_component(link0, li0, null);
+    			append(ul, t3);
+    			append(ul, li1);
+    			mount_component(link1, li1, null);
+    			insert(target, t4, anchor);
+    			insert(target, div1, anchor);
+    			mount_component(route0, div1, null);
+    			append(div1, t5);
+    			mount_component(route1, div1, null);
     			current = true;
     		},
     		p(ctx, dirty) {
-    			const navlink0_changes = {};
+    			const link0_changes = {};
 
     			if (dirty & /*$$scope*/ 2) {
-    				navlink0_changes.$$scope = { dirty, ctx };
+    				link0_changes.$$scope = { dirty, ctx };
     			}
 
-    			navlink0.$set(navlink0_changes);
-    			const navlink1_changes = {};
+    			link0.$set(link0_changes);
+    			const link1_changes = {};
 
     			if (dirty & /*$$scope*/ 2) {
-    				navlink1_changes.$$scope = { dirty, ctx };
+    				link1_changes.$$scope = { dirty, ctx };
     			}
 
-    			navlink1.$set(navlink1_changes);
+    			link1.$set(link1_changes);
     		},
     		i(local) {
     			if (current) return;
-    			transition_in(navlink0.$$.fragment, local);
-    			transition_in(navlink1.$$.fragment, local);
+    			transition_in(link0.$$.fragment, local);
+    			transition_in(link1.$$.fragment, local);
     			transition_in(route0.$$.fragment, local);
     			transition_in(route1.$$.fragment, local);
     			current = true;
     		},
     		o(local) {
-    			transition_out(navlink0.$$.fragment, local);
-    			transition_out(navlink1.$$.fragment, local);
+    			transition_out(link0.$$.fragment, local);
+    			transition_out(link1.$$.fragment, local);
     			transition_out(route0.$$.fragment, local);
     			transition_out(route1.$$.fragment, local);
     			current = false;
     		},
     		d(detaching) {
     			if (detaching) detach(nav);
-    			destroy_component(navlink0);
-    			destroy_component(navlink1);
-    			if (detaching) detach(t1);
-    			if (detaching) detach(div);
+    			destroy_component(link0);
+    			destroy_component(link1);
+    			if (detaching) detach(t4);
+    			if (detaching) detach(div1);
     			destroy_component(route0);
     			destroy_component(route1);
     		}
@@ -2075,6 +2163,14 @@
     }
 
     function create_fragment$6(ctx) {
+    	let link_1;
+    	let script0;
+    	let script0_src_value;
+    	let script1;
+    	let script1_src_value;
+    	let script2;
+    	let script2_src_value;
+    	let t;
     	let current;
 
     	const router = new Router({
@@ -2087,12 +2183,68 @@
 
     	return {
     		c() {
+    			link_1 = element("link");
+    			script0 = element("script");
+    			script1 = element("script");
+    			script2 = element("script");
+    			t = space();
     			create_component(router.$$.fragment);
+    			this.h();
     		},
     		l(nodes) {
+    			const head_nodes = query_selector_all("[data-svelte=\"svelte-ibwhuh\"]", document.head);
+    			link_1 = claim_element(head_nodes, "LINK", { rel: true, href: true });
+
+    			script0 = claim_element(head_nodes, "SCRIPT", {
+    				src: true,
+    				integrity: true,
+    				crossorigin: true
+    			});
+
+    			var script0_nodes = children(script0);
+    			script0_nodes.forEach(detach);
+
+    			script1 = claim_element(head_nodes, "SCRIPT", {
+    				src: true,
+    				integrity: true,
+    				crossorigin: true
+    			});
+
+    			var script1_nodes = children(script1);
+    			script1_nodes.forEach(detach);
+
+    			script2 = claim_element(head_nodes, "SCRIPT", {
+    				src: true,
+    				integrity: true,
+    				crossorigin: true
+    			});
+
+    			var script2_nodes = children(script2);
+    			script2_nodes.forEach(detach);
+    			head_nodes.forEach(detach);
+    			t = claim_space(nodes);
     			claim_component(router.$$.fragment, nodes);
+    			this.h();
+    		},
+    		h() {
+    			attr(link_1, "rel", "stylesheet");
+    			attr(link_1, "href", "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+    			if (script0.src !== (script0_src_value = "https://code.jquery.com/jquery-3.4.1.slim.min.js")) attr(script0, "src", script0_src_value);
+    			attr(script0, "integrity", "sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n");
+    			attr(script0, "crossorigin", "anonymous");
+    			if (script1.src !== (script1_src_value = "https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js")) attr(script1, "src", script1_src_value);
+    			attr(script1, "integrity", "sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo");
+    			attr(script1, "crossorigin", "anonymous");
+    			if (script2.src !== (script2_src_value = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js")) attr(script2, "src", script2_src_value);
+    			attr(script2, "integrity", "sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6");
+    			attr(script2, "crossorigin", "anonymous");
     		},
     		m(target, anchor) {
+    			append(document.head, link_1);
+    			append(document.head, script0);
+    			append(document.head, script1);
+    			append(document.head, script2);
+    			insert(target, t, anchor);
     			mount_component(router, target, anchor);
     			current = true;
     		},
@@ -2116,6 +2268,11 @@
     			current = false;
     		},
     		d(detaching) {
+    			detach(link_1);
+    			detach(script0);
+    			detach(script1);
+    			detach(script2);
+    			if (detaching) detach(t);
     			destroy_component(router, detaching);
     		}
     	};

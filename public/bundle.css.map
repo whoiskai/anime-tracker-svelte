@@ -1,8 +1,12 @@
 {
   "version": 3,
   "file": "bundle.css",
-  "sources": [],
-  "sourcesContent": [],
+  "sources": [
+    "../App.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\n\timport { Router, Route, link } from \"svelte-routing\";\n\timport Link from \"./components/NavLink.svelte\";\n\timport About from \"./routes/About.svelte\"\n\timport Home from \"./routes/Home.svelte\"\n\texport let url = \"\";\n</script>\n\n<svelte:head>\n\t<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">\n</svelte:head>\n\n\n<Router url=\"{url}\">\n\t<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\n\t<a class=\"navbar-brand\" href=\"#\">Anime Tracker</a>\n\t<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNavAltMarkup\" aria-controls=\"navbarNavAltMarkup\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n\t\t<span class=\"navbar-toggler-icon\"></span>\n\t</button>\n\t\t<div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n\t\t\t<ul class=\"navbar-nav mr-auto\">\n\t\t\t\t<li class=\"nav-item\">\n\t\t\t\t\t<a href=\"/\" use:link class=\"nav-link\">Home</a>\n\t\t\t\t</li>\n\t\t\t\t<li class=\"nav-item\">\n\t\t\t\t\t<a href=\"about\" use:link class=\"nav-link\">About</a>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</div>\n\t</nav>\n\t<div class=\"container-fluid\">\n\t\t<Route path=\"about\" component=\"{About}\" />\n\t\t<Route path=\"/\" component=\"{Home}\" />\n\t</div>\n</Router>\n\n<style>\n:global(body) {\n    margin: 0;\n    padding: 0;\n}\n</style>"
+  ],
   "names": [],
-  "mappings": ""
+  "mappings": "AAqCQ,IAAI,AAAE,CAAC,AACX,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,AACd,CAAC"
 }

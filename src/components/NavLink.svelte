@@ -8,9 +8,9 @@
 
     // The object returned here is spread on the anchor element's attributes
     if (isActive) {
-      return { class: "active" };
+      return { class: "nav-link active" };
     }
-    return {};
+    return { class: "nav-link" };
   }
 </script>
 
