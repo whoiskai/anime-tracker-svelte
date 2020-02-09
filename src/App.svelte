@@ -3,7 +3,7 @@
 	import Link from "./components/NavLink.svelte";
 	import About from "./routes/About.svelte"
 	import Home from "./routes/Home.svelte"
-	
+
 	export let url = "";
 
 	function getProps({ location, href, isPartiallyCurrent, isCurrent }) {
