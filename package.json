@@ -8,7 +8,7 @@
     "server": "nodemon server.js --watch server.js --watch public/App.js"
   },
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
     "rollup": "^1.31.0",
